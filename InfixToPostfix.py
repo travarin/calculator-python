@@ -16,11 +16,19 @@ def main():
             output.append(token)
         elif is_operator(token):
             prev_op = operators.pop() if len(operators) > 0 else ""
-            while len(operators) > 0 and precedence.get(prev_op) >= precedence.get(token):
+            while len(operators) > 0 and prev_op != "(" and precedence.get(prev_op) >= precedence.get(token):
                 output.append(prev_op)
                 prev_op = operators.pop()
             operators.append(prev_op)
             operators.append(token)
+        elif token == "(":
+            operators.append(token)
+        elif token == ")":
+            prev_op = operators.pop()
+            while len(operators) > 0 and prev_op != "(":
+                output.append(prev_op)
+                prev_op = operators.pop()
+
     while len(operators) > 0:
         op = operators.pop()
         output.append(op)
