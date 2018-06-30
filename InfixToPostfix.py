@@ -8,8 +8,8 @@ from collections import deque
 def main():
     output     = deque()
     operators  = deque()
-    precedence = {"+":0, "-":0, "*":1, "/":1, "%":1}
-    expression = input("Enter an expression: ")
+    precedence = {"+":0, "-":0, "*":1, "/":1, "%":1, "**":2}
+    expression = input("Valid operators are +, -, *, /, %, **, and (). Enter an expression: ")
     tokens     = expression.split()
     for token in tokens:
         if represents_int(token):
@@ -46,7 +46,7 @@ def represents_int(token):
         return False
 
 def is_operator(token):
-    return token == "+" or token == "-" or token == "*" or token == "/" or token == "%"
+    return token == "+" or token == "-" or token == "*" or token == "/" or token == "%" or token == "**"
 
 if __name__ == "__main__":
     main()
