@@ -35,7 +35,7 @@ def main():
     result = ""
     while len(output) > 0:
         result += output.popleft() + " "
-    print (result)
+    return result
 
 
 def represents_int(token):
