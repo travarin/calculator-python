@@ -4,11 +4,11 @@ import AlgebraicExpression
 def main():
     options = {0:"Algebraic expression"}
     keep_looping = True
-    print ("Welcome to the Python 3 Calculator. ")
+    print ("Welcome to the Python 3 Calculator. \n")
     while keep_looping:
         print ("Your options are: ")
         print_options(options)
-        option = input("Enter your choice: ")
+        option = input("\nEnter your choice: ")
         if option == "0":
             algebraic_expression()
         keep_looping = True if input("Enter Y to continue looping: ") == "Y" else False

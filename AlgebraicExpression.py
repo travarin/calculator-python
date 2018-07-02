@@ -26,7 +26,7 @@ def evaluate_op(val1, val2, operator):
         return val1 / val2
     elif operator == "%":
         return val1 % val2
-    elif operator == "**":
+    elif operator == "^":
         return val1 ** val2
 
 
