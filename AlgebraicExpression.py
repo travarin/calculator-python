@@ -4,9 +4,10 @@ from collections import deque
 
 def main():
     keep_evaluating = True
+    prev_ans        = 0
     print ("Valid operators are +, -, *, /, %, ^, and (). Enter an expression, or q to quit.")
     while keep_evaluating:
-        expression = enter_expression()
+        expression = enter_expression(prev_ans)
         if expression[0][0] != "q":
             postfix = InfixToPostfix.main(expression).split()
             values     = deque()
@@ -17,7 +18,8 @@ def main():
                     val2 = values.pop()
                     val1 = values.pop()
                     values.append(evaluate_op(int(val1), int(val2), token))
-            print (values.pop())
+            prev_ans = values.pop()
+            print (prev_ans)
         keep_evaluating = False if expression[0][0] == "q" else True
 
 def evaluate_op(val1, val2, operator):
@@ -34,12 +36,14 @@ def evaluate_op(val1, val2, operator):
     elif operator == "^":
         return val1 ** val2
 
-def enter_expression():
+def enter_expression(prev_ans):
     valid_expression = False
     while not valid_expression:
-        expression = input("> ").split()
-        valid_expression = expression[0][0] == "q" or check_expression(expression) 
-    return expression
+        expression = input("> ")
+        expression = expression.replace("ans", str(prev_ans))
+        tokens     = expression.split()
+        valid_expression = tokens[0][0] == "q" or check_expression(tokens) 
+    return tokens
 
 def check_expression(tokens):
     for token in tokens:
