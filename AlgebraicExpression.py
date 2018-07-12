@@ -10,31 +10,9 @@ def main():
         expression = enter_expression(prev_ans)
         if expression[0][0] != "q":
             postfix = InfixToPostfix.main(expression).split()
-            values     = deque()
-            for token in postfix:
-                if InfixToPostfix.represents_int(token):
-                    values.append(token)
-                elif InfixToPostfix.is_operator(token):
-                    val2 = values.pop()
-                    val1 = values.pop()
-                    values.append(evaluate_op(int(val1), int(val2), token))
-            prev_ans = values.pop()
+            prev_ans = evaluate_expression(postfix)
             print (prev_ans)
         keep_evaluating = False if expression[0][0] == "q" else True
-
-def evaluate_op(val1, val2, operator):
-    if operator == "+":
-        return val1 + val2
-    elif operator == "-":
-        return val1 - val2
-    elif operator == "*":
-        return val1 * val2
-    elif operator == "/":
-        return val1 / val2
-    elif operator == "%":
-        return val1 % val2
-    elif operator == "^":
-        return val1 ** val2
 
 def enter_expression(prev_ans):
     valid_expression = False
@@ -51,6 +29,31 @@ def check_expression(tokens):
             print ("token \"" + token + "\" was invalid. Enter a valid operator, and be sure to put a space between the operators and numbers.")
             return False
     return True
+
+def evaluate_expression(postfix):
+    values = deque()
+    for token in postfix:
+        if InfixToPostfix.represents_int(token):
+            values.append(token)
+        elif InfixToPostfix.is_operator(token):
+            val2 = values.pop()
+            val1 = values.pop()
+            values.append(evaluate_op(int(val1), int(val2), token))
+    return values.pop()
+
+def evaluate_op(val1, val2, operator):
+    if operator == "+":
+        return val1 + val2
+    elif operator == "-":
+        return val1 - val2
+    elif operator == "*":
+        return val1 * val2
+    elif operator == "/":
+        return val1 / val2
+    elif operator == "%":
+        return val1 % val2
+    elif operator == "^":
+        return val1 ** val2
 
 if __name__ == "__main__":
     main()
