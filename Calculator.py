@@ -11,7 +11,7 @@ def main():
         option = input("\nEnter your choice: ")
         if option == "0":
             algebraic_expression()
-        keep_looping = True if input("Enter Y to continue looping: ") == "Y" else False
+        keep_looping = True if input("\nEnter Y to continue looping: ") == "Y" else False
 
 
 

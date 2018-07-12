@@ -5,11 +5,10 @@ Implements the Shunting Yard Algorithm. 6/24/2018
 """
 from collections import deque
 
-def main():
+def main(tokens):
     output     = deque()
     operators  = deque()
     precedence = {"+":0, "-":0, "*":1, "/":1, "%":1, "^":2}
-    tokens     = enter_expression()
     for token in tokens:
         if represents_int(token):
             output.append(token)
@@ -46,20 +45,6 @@ def represents_int(token):
 
 def is_operator(token):
     return token == "+" or token == "-" or token == "*" or token == "/" or token == "%" or token == "^" or token == "(" or token == ")"
-
-def enter_expression():
-    valid_expression = False
-    while not valid_expression:
-        expression = input("Valid operators are +, -, *, /, %, ^, and (). Enter an expression: ").split()
-        valid_expression = check_expression(expression)
-    return expression
-
-def check_expression(tokens):
-    for token in tokens:
-        if not represents_int(token) and not is_operator(token):
-            print ("token \"" + token + "\" was invalid. Enter a valid operator, and be sure to put a space between the operators and numbers.")
-            return False
-    return True
 
 if __name__ == "__main__":
     main()
