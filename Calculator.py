@@ -8,10 +8,12 @@ def main():
     while keep_looping:
         print ("Your options are: ")
         print_options(options)
-        option = input("\nEnter your choice: ")
+        option = input("\nEnter your choice, or q to quit: ")
         if option == "0":
             algebraic_expression()
-        keep_looping = True if input("\nEnter Y to continue looping: ") == "Y" else False
+        elif option == "q":
+            keep_looping = False
+        
 
 
 
