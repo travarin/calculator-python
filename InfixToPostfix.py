@@ -10,7 +10,7 @@ def main(tokens):
     operators  = deque()
     precedence = {"+":0, "-":0, "*":1, "/":1, "%":1, "^":2}
     for token in tokens:
-        if represents_int(token):
+        if represents_float(token):
             output.append(token)
         elif token == "(":
             operators.append(token)
@@ -36,9 +36,9 @@ def main(tokens):
     return result
 
 
-def represents_int(token):
+def represents_float(token):
     try:
-        int(token)
+        float(token)
         return True
     except ValueError:
         return False
